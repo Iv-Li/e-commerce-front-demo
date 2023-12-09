@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import FormRow from '../components/FormRow';
-import axios from 'axios';
+import axios from '../utils/axiosInterseption.js';
 import useLocalState from '../utils/localState';
 
 function Register() {
@@ -40,7 +40,12 @@ function Register() {
 
       setSuccess(true);
       setValues({ name: '', email: '', password: '' });
-      showAlert({ text: data.message, type: 'success' });
+      const text = (<>
+        <span>data.message</span>
+        <h2>Открыть почту <a href={`mailto:${email}`}>Написати листа</a></h2>`
+      </> )
+
+      showAlert({ text, type: 'success' });
     } catch (error) {
       const { message } = error.response.data;
       showAlert({ text: message || 'there was an error' });

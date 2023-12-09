@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context';
-import axios from 'axios';
+import axios from '../utils/axiosInterseption.js';
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -20,8 +20,11 @@ const VerifyPage = () => {
         verificationToken: query.get('token'),
         email: query.get('email'),
       });
+      console.log({data})
+
     } catch (error) {
       // console.log(error.response);
+      console.log({error})
       setError(true);
     }
     setLoading(false);
@@ -31,6 +34,9 @@ const VerifyPage = () => {
     if (!isLoading) {
       verifyToken();
     }
+
+    console.log({ query, verificationToken: query.get('token'),
+      email: query.get('email'), })
   }, []);
 
   if (loading) {
