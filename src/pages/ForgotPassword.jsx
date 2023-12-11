@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import FormRow from '../components/FormRow';
-import axios from 'axios';
+import axios from '../utils/axiosInterseption.js';
 import useLocalState from '../utils/localState';
 
 const ForgotPassword = () => {

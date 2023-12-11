@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import axios from 'axios';
+import axios from '../utils/axiosInterseption.js';
 import FormRow from '../components/FormRow';
 import useLocalState from '../utils/localState';
 
@@ -11,6 +11,7 @@ function useQuery() {
 
 const ResetPasswordForm = () => {
   const [password, setPassword] = useState('');
+  const navigate = useNavigate()
   const { alert, showAlert, loading, setLoading, success, setSuccess } =
     useLocalState();
 
@@ -40,7 +41,7 @@ const ResetPasswordForm = () => {
         type: 'success',
       });
       setTimeout(() => {
-        window.history.pushState({}, undefined, '/login');
+        navigate('/login', { replace: true })
       }, 3000);
     } catch (error) {
       showAlert({ text: error.response.data.message });

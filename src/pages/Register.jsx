@@ -41,7 +41,7 @@ function Register() {
       setSuccess(true);
       setValues({ name: '', email: '', password: '' });
       const text = (<>
-        <span>data.message</span>
+        <span>{data.message}</span>
         <h2>Открыть почту <a href={`mailto:${email}`}>Написати листа</a></h2>`
       </> )
 

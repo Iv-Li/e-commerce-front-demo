@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import main from '../assets/main.svg';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react'
 import { useGlobalContext } from '../context';
 function Home() {
   const { user } = useGlobalContext();
+  const navigate = useNavigate()
 
   useEffect(() => {
-    user && redirect('/dashboard')
+    user && navigate('/dashboard')
   }, [user])
 
   return (
